@@ -1,0 +1,39 @@
+<div class="card">
+  <div class="card-header bordered">
+    <div class="header-block">
+      <h3 class="title">Add category</h3>
+    </div>
+  </div>
+  <div class="card-block">
+    <form #f="ngForm" (submit)="onSubmit(f)">
+      <div class="form-group"
+        [ngClass]="{'has-error': name.invalid && name.touched}"
+      >
+        <label class="control-label" for="category-name">Category name</label>
+        <input type="text" id="category-name" class="form-control" required #name="ngModel" name="name" ngModel>
+        <span class="form-help-text" *ngIf="name.invalid && name.touched">Wrong value</span>
+      </div>
+      <div class="form-group"
+           [ngClass]="{'has-error': capacity.invalid && capacity.touched}"
+      >
+        <label class="control-label" for="category-value">Category limit</label>
+        <input type="number"
+               value="0"
+               id="category-value"
+               class="form-control"
+               [ngModel]="1"
+               name="capacity"
+               #capacity="ngModel"
+               required
+               min="1"
+        >
+        <span class="form-help-text"
+              *ngIf="capacity.invalid && capacity.touched"
+        >Wrong value</span>
+      </div>
+      <button type="submit" class="btn btn-primary"
+              [disabled]="f.invalid"
+      >Add</button>
+    </form>
+  </div>
+</div>

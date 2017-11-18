@@ -1,0 +1,61 @@
+<div class="card">
+  <div class="card-header bordered">
+    <div class="header-block">
+      <h3 class="title">Edit category</h3>
+    </div>
+  </div>
+  <div class="card-block">
+    <div
+      class="alert alert-{{message.type}}"
+      *ngIf="message.text"
+    >{{message.text}}</div>
+    <form #f="ngForm" (submit)="onSubmit(f)">
+      <div class="form-group">
+        <label for="e-select-category">Choose category</label>
+        <select id="e-select-category"
+                class="form-control"
+                [(ngModel)]="currentCategoryId"
+                [ngModelOptions]="{standalone: true}"
+                (change)="onCategoryChange()">
+          <option *ngFor="let c of categories"
+            [value]="c.id"
+          >
+            {{c.name}}
+          </option>
+        </select>
+      </div>
+      <div class="form-group"
+           [ngClass]="{'has-error': name.invalid && name.touched}"
+      >
+        <label class="control-label" for="e-category-name">New name</label>
+        <input type="text" id="e-category-name" class="form-control"
+               required
+               #name="ngModel"
+               name="name"
+               [ngModel]="currentCategory.name">
+        <span class="form-help-text" *ngIf="name.invalid && name.touched">Wrong value</span>
+      </div>
+      <div class="form-group"
+           [ngClass]="{'has-error': capacity.invalid && capacity.touched}"
+      >
+        <label class="control-label" for="e-category-value">New limit</label>
+        <input type="number"
+               value="0"
+               id="e-category-value"
+               class="form-control"
+               [ngModel]="currentCategory.capacity"
+               name="capacity"
+               #capacity="ngModel"
+               required
+               min="1"
+        >
+        <span class="form-help-text"
+              *ngIf="capacity.invalid && capacity.touched"
+        >Wrong value</span>
+      </div>
+      <button type="submit" class="btn btn-primary"
+        [disabled]="f.invalid"
+      >Edit</button>
+    </form>
+  </div>
+</div>

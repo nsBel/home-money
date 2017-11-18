@@ -1,0 +1,97 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "test@test.com",
+      "password": "12345678",
+      "name": "Admin"
+    }
+  ],
+  "bill": {
+    "value": 99357,
+    "currency": "RUB"
+  },
+  "categories": [
+    {
+      "name": "Home",
+      "capacity": 10000,
+      "id": 1
+    },
+    {
+      "name": "Food",
+      "capacity": 10000,
+      "id": 2
+    },
+    {
+      "id": 3,
+      "name": "Car",
+      "capacity": 7000
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "type": "income",
+      "amount": 1250,
+      "category": 2,
+      "date": "12.06.2017 19:49:02",
+      "description": "Bought food"
+    },
+    {
+      "id": 2,
+      "type": "outcome",
+      "amount": 1300,
+      "category": 1,
+      "date": "13.06.2017 19:49:02",
+      "description": "Bought a vacuum cleaner"
+    },
+    {
+      "type": "income",
+      "amount": 1480,
+      "category": 2,
+      "date": "17.06.2017 14:00:48",
+      "id": 3,
+      "description": "Restaurant"
+    },
+    {
+      "type": "outcome",
+      "amount": 2470,
+      "category": 2,
+      "date": "17.06.2017 14:00:58",
+      "id": 4,
+      "description": "Bought food"
+    },
+    {
+      "type": "outcome",
+      "amount": 4000,
+      "category": 3,
+      "date": "10.06.2017 14:01:58",
+      "id": 5,
+      "description": "Gasoline"
+    },
+    {
+      "type": "income",
+      "amount": 234,
+      "category": 2,
+      "date": "15.11.2017 19.26.22",
+      "description": "test",
+      "id": 6
+    },
+    {
+      "type": "income",
+      "amount": 123,
+      "category": 2,
+      "date": "15.11.2017 19.27.24",
+      "description": "test",
+      "id": 7
+    },
+    {
+      "type": "outcome",
+      "amount": 1000,
+      "category": 3,
+      "date": "15.11.2017 21.18.36",
+      "description": "test 2",
+      "id": 8
+    }
+  ]
+}

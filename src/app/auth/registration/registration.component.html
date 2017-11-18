@@ -1,0 +1,72 @@
+<p class="text-xs-center">Sign up to get access to the system!</p>
+<div class="alert alert-{{message.type}}" *ngIf="message.text">{{message.text}}</div>
+<form [formGroup]="form" (submit)="onSubmit()">
+  <div class="form-group"
+       [ngClass]="{'has-error': form.get('email').invalid && form.get('email').touched}"
+  >
+    <label for="email">Email</label>
+    <input
+      type="text"
+      class="form-control underlined"
+      id="email"
+      placeholder="email"
+      formControlName="email"
+    >
+    <span class="form-help-text" *ngIf="form.get('email').invalid && form.get('email').touched">
+      <span *ngIf="form.get('email')['errors']['required']">Email can't be blank!</span>
+      <span *ngIf="form.get('email')['errors']['email']">Please enter valid email!</span>
+      <span *ngIf="form.get('email')['errors']['forbiddenEmail']">Already such email in the system!</span>
+    </span>
+  </div>
+  <div class="form-group"
+       [ngClass]="{'has-error': form.get('password').invalid && form.get('password').touched}"
+  >
+    <label for="password">Password</label>
+    <input
+      type="password"
+      class="form-control underlined"
+      id="password"
+      placeholder="Password"
+      formControlName="password"
+    >
+    <span class="form-help-text" *ngIf="form.get('password').invalid && form.get('password').touched">
+      <span *ngIf="form.get('password')['errors']['required']">Password can't be blank!</span>
+      <span *ngIf="form.get('password')['errors']['minlength'] && form.get('password')['errors']['minlength']['requiredLength']">
+        Password should be more than {{form.get('password')['errors']['minlength']['requiredLength']}} characters!
+      </span>
+    </span>
+  </div>
+  <div class="form-group"
+       [ngClass]="{'has-error': form.get('name').invalid && form.get('name').touched}"
+  >
+    <label for="name">Name</label>
+    <input
+      type="text"
+      class="form-control underlined"
+      id="name"
+      placeholder="Name"
+      formControlName="name"
+    >
+    <span class="form-help-text"  *ngIf="form.get('name').invalid && form.get('name').touched">Name can't be blank!</span>
+  </div>
+  <div class="form-group"
+       [ngClass]="{'has-error': form.get('agree').invalid && form.get('agree').touched}"
+  >
+    <label for="agree">
+      <input class="checkbox" id="agree" type="checkbox"
+             formControlName="agree">
+      <span>Agree with the rules</span>
+    </label>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-block btn-primary" [disabled]="form.invalid">Register</button>
+  </div>
+  <div class="form-group">
+    <p class="text-muted text-xs-center">
+      Already have an account?
+      <a [routerLink]="'/login'">
+        Sign in!
+      </a>
+    </p>
+  </div>
+</form>

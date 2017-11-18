@@ -1,0 +1,46 @@
+<p class="text-xs-center">Please Log In</p>
+<div class="alert alert-{{message.type}}" *ngIf="message.text">{{message.text}}</div>
+<form [formGroup]="form" (submit)="onSubmit()">
+  <div class="form-group"
+    [ngClass]="{'has-error': form.get('email').invalid && form.get('email').touched}"
+  >
+    <label for="email">Email</label>
+    <input
+      type="text"
+      class="form-control underlined"
+      id="email"
+      placeholder="Email"
+      formControlName="email"
+    >
+    <span class="form-help-text" *ngIf="form.get('email').invalid && form.get('email').touched">
+      <span *ngIf="form.get('email')['errors']['required']">Email can't be blank!</span>
+      <span *ngIf="form.get('email')['errors']['email']">Enter valid email!</span>
+    </span>
+  </div>
+  <div class="form-group"
+       [ngClass]="{'has-error': form.get('password').invalid && form.get('password').touched}"
+  >
+    <label for="password">Password</label>
+    <input
+      type="password"
+      class="form-control underlined"
+      id="password"
+      placeholder="Password"
+      formControlName="password"
+    >
+    <span class="form-help-text" *ngIf="form.get('password').invalid && form.get('password').touched">
+      <span *ngIf="form.get('password')['errors']['required']">Password can't be blank!</span>
+      <span *ngIf="form.get('password')['errors']['minlength']">
+        Password should be more than {{form.get('password')['errors']['minlength']['requiredLength']}} characters!
+      </span>
+    </span>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-block btn-primary" [disabled]="form.invalid">Login</button>
+  </div>
+  <div class="form-group">
+    <p class="text-muted text-xs-center">
+      Don't have an account? <a [routerLink]="'/registration'">Sign up!</a>
+    </p>
+  </div>
+</form>

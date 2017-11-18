@@ -1,0 +1,73 @@
+<div class="card">
+  <div class="card-header bordered">
+    <div class="header-block">
+      <h3 class="title">Add event</h3>
+    </div>
+  </div>
+  <div class="card-block">
+    <div class="alert alert-{{message.type}}"
+      *ngIf="message.text"
+    >{{message.text}}</div>
+    <form #f="ngForm" (submit)="onSubmit(f)">
+      <div class="form-group">
+        <label class="control-label" for="category">Choose category</label>
+        <select class="form-control" id="category"
+                name="category"
+                [ngModel]="1"
+                required>
+          <option
+          *ngFor="let c of categories" [value]="c.id">{{c.name}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Choose type</label>
+        <div *ngFor="let t of types">
+          <label>
+            <input class="radio" name="type" type="radio"
+                   [value]="t.type"
+                   [ngModel]="'outcome'"
+                   required
+            >
+            <span>{{t.label}}</span>
+          </label>
+        </div>
+      </div>
+      <div class="form-group"
+        [ngClass]="{'has-error': false}"
+      >
+        <label class="control-label" for="amount">Amount</label>
+        <input
+          type="number"
+          id="amount"
+          class="form-control"
+          name="amount"
+          [ngModel]="1"
+          min="1"
+          #amount="ngModel"
+          required
+        >
+        <span class="form-help-text"
+              *ngIf="amount.invalid && amount.touched"
+        >Wrong value</span>
+      </div>
+      <div class="form-group"
+        [ngClass]="{'has-error': false}"
+      >
+        <label class="control-label" for="description">Comment</label>
+        <input
+          type="text"
+          id="description"
+          class="form-control"
+          name="description"
+          ngModel
+          #description="ngModel"
+          required
+        >
+        <span class="form-help-text"
+              *ngIf="description.invalid && description.touched"
+        >Wrong value</span>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Add</button>
+    </form>
+  </div>
+</div>
